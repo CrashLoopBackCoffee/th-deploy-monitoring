@@ -37,7 +37,8 @@ node_exporter = pulumi_docker.Container(
         "--path.rootfs=/host",
         "--path.sysfs=/host/sys",
         "--collector.filesystem.ignored-mount-points",
-        "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)",
+        "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|"
+        "rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)",
     ],
     restart="always",
     start=True,
