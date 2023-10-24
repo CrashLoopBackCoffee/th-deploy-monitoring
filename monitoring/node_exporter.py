@@ -1,16 +1,21 @@
+"""
+Deploys the node-exporter
+"""
 import pulumi_docker
 from pulumi import ResourceOptions
 
 
 def create_node_exporter(network: pulumi_docker.Network, opts: ResourceOptions):
-    # Create node-exporter container
+    """
+    Deploys the node-exporter
+    """
     node_exporter_image = pulumi_docker.RemoteImage(
         "node-exporter",
         name="quay.io/prometheus/node-exporter:v1.6.1",
         keep_locally=True,
         opts=opts,
     )
-    node_exporter = pulumi_docker.Container(
+    pulumi_docker.Container(
         "node-exporter",
         image=node_exporter_image.image_id,
         ports=[
@@ -33,7 +38,8 @@ def create_node_exporter(network: pulumi_docker.Network, opts: ResourceOptions):
             "--path.sysfs=/host/sys",
             "--collector.filesystem.ignored-mount-points",
             "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|"
-            "rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)",
+            "rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|"
+            "rootfs/var/lib/docker/aufs)($$|/)",
         ],
         networks_advanced=[
             pulumi_docker.ContainerNetworksAdvancedArgs(
