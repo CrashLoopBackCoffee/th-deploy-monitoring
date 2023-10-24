@@ -1,0 +1,46 @@
+import pulumi_docker
+from pulumi import ResourceOptions
+
+
+def create_node_exporter(network: pulumi_docker.Network, opts: ResourceOptions):
+    # Create node-exporter container
+    node_exporter_image = pulumi_docker.RemoteImage(
+        "node-exporter",
+        name="quay.io/prometheus/node-exporter:v1.6.1",
+        keep_locally=True,
+        opts=opts,
+    )
+    node_exporter = pulumi_docker.Container(
+        "node-exporter",
+        image=node_exporter_image.image_id,
+        ports=[
+            pulumi_docker.ContainerPortArgs(internal=9100, external=9100),
+        ],
+        volumes=[
+            pulumi_docker.ContainerVolumeArgs(
+                host_path=host_path, container_path=container_path, read_only=True
+            )
+            for host_path, container_path in [
+                ("/", "/host"),
+                ("/proc", "/host/proc"),
+                ("/sys", "/host/sys"),
+                ("/", "/rootfs"),
+            ]
+        ],
+        command=[
+            "--path.procfs=/host/proc",
+            "--path.rootfs=/host",
+            "--path.sysfs=/host/sys",
+            "--collector.filesystem.ignored-mount-points",
+            "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|"
+            "rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)",
+        ],
+        networks_advanced=[
+            pulumi_docker.ContainerNetworksAdvancedArgs(
+                name=network.name, aliases=["node-exporter"]
+            )
+        ],
+        restart="always",
+        start=True,
+        opts=opts,
+    )
