@@ -4,6 +4,7 @@
 import pulumi
 import pulumi_docker
 
+from monitoring.cadvisor import create_cadvisor
 from monitoring.grafana import create_grafana
 from monitoring.node_exporter import create_node_exporter
 from monitoring.prometheus import create_prometheus
@@ -19,3 +20,4 @@ network = pulumi_docker.Network("monitoring", opts=opts)
 create_node_exporter(network, opts)
 create_prometheus(network, opts)
 create_grafana(network, opts)
+create_cadvisor(network, opts)
