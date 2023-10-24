@@ -7,7 +7,7 @@ import pulumi_docker as docker
 import yaml
 from pulumi import ResourceOptions
 
-from monitoring.utils import get_assets_path
+from monitoring.utils import get_assets_path, get_image
 
 
 def create_grafana(network: docker.Network, opts: ResourceOptions):
@@ -50,7 +50,7 @@ def create_grafana(network: docker.Network, opts: ResourceOptions):
 
     image = docker.RemoteImage(
         "grafana",
-        name="grafana/grafana:10.2.0",
+        name=get_image("grafana"),
         keep_locally=True,
         opts=opts,
     )

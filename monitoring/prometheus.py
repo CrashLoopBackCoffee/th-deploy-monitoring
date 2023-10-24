@@ -7,7 +7,7 @@ import pulumi_docker as docker
 import yaml
 from pulumi import ResourceOptions
 
-from monitoring.utils import get_assets_path
+from monitoring.utils import get_assets_path, get_image
 
 
 def create_prometheus(
@@ -49,7 +49,7 @@ def create_prometheus(
 
     image = docker.RemoteImage(
         "prometheus",
-        name="quay.io/prometheus/prometheus:v2.37.7",
+        name=get_image("prometheus"),
         keep_locally=True,
         opts=opts,
     )
