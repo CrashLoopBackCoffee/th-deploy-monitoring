@@ -334,6 +334,22 @@ semver = ">=2.13,<3.0"
 six = ">=1.12,<2.0"
 
 [[package]]
+name = "pulumi-command"
+version = "0.9.1"
+description = "The Pulumi Command Provider enables you to execute commands and scripts either locally or remotely as part of the Pulumi resource model."
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "pulumi_command-0.9.1-py3-none-any.whl", hash = "sha256:c0613e15c0b156bad221306dafcb63ab1d38319287653ee50e534f87ee00db15"},
+    {file = "pulumi_command-0.9.1.tar.gz", hash = "sha256:f95840b7865ccc0aab915ade16df5d1054843716259e9261f27b91af71c23df7"},
+]
+
+[package.dependencies]
+parver = ">=0.2.1"
+pulumi = ">=3.0.0,<4.0.0"
+semver = ">=2.8.1"
+
+[[package]]
 name = "pulumi-docker"
 version = "4.4.4"
 description = "A Pulumi package for interacting with Docker in Pulumi programs"
@@ -493,4 +509,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "b4ec96f1afa280fe3e54d39153fbc3418b9e491292e7b42e2d52f4748f25a9f6"
+content-hash = "cc2a4a12576ccc9570320205bad697bb80ea28653eaacf10d252ade22c24d573"

@@ -1,0 +1,4 @@
+config:
+  monitoring:root-dir: /volume2/docker
+  monitoring:target-host: synology
+  monitoring:target-user: tobias
