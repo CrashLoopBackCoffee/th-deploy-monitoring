@@ -11,8 +11,7 @@ provider = pulumi_docker.Provider("synology", host="ssh://synology")
 opts = pulumi.ResourceOptions(provider=provider)
 
 # Create networks so we don't have to expose all ports on the host
-network_frontend = pulumi_docker.Network("monitoring-frontend", opts=opts)
-network_backend = pulumi_docker.Network("monitoring-backend", opts=opts)
+network = pulumi_docker.Network("monitoring", opts=opts)
 
 # Create node-exporter container
-create_node_exporter(network_backend, opts)
+create_node_exporter(network, opts)
