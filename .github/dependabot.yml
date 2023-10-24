@@ -5,7 +5,26 @@
 
 version: 2
 updates:
+  # Python dependencies
   - package-ecosystem: poetry
     directory: "/"
     schedule:
       interval: "daily"
+
+  # Used docker images
+  - package-ecosystem: 'docker'
+    directory: assets/docker/cadvisor
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: 'docker'
+    directory: assets/docker/grafana
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: 'docker'
+    directory: assets/docker/node-exporter
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: 'docker'
+    directory: assets/docker/prometheus
+    schedule:
+      interval: "weekly"

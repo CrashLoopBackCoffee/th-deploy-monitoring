@@ -4,6 +4,8 @@ Deploys the node-exporter
 import pulumi_docker
 from pulumi import ResourceOptions
 
+from monitoring.utils import get_image
+
 
 def create_node_exporter(network: pulumi_docker.Network, opts: ResourceOptions):
     """
@@ -11,7 +13,7 @@ def create_node_exporter(network: pulumi_docker.Network, opts: ResourceOptions):
     """
     node_exporter_image = pulumi_docker.RemoteImage(
         "node-exporter",
-        name="quay.io/prometheus/node-exporter:v1.6.1",
+        name=get_image("node-exporter"),
         keep_locally=True,
         opts=opts,
     )
