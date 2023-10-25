@@ -28,3 +28,9 @@ updates:
     directory: assets/docker/prometheus
     schedule:
       interval: "weekly"
+
+  # Test recursive lookup of dockerfiles
+  - package-ecosystem: 'docker'
+    directory: /
+    schedule:
+      interval: "daily"
