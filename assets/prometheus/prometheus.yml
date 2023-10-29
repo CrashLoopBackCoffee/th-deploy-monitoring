@@ -56,8 +56,9 @@ scrape_configs:
       module: [icmp_ipv4]
     static_configs:
       - targets:
-        - heise.de
-        - google.de
+          - 192.168.2.1
+          - heise.de
+          - google.de
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -66,3 +67,17 @@ scrape_configs:
       # The blackbox exporter's real hostname:port.
       - target_label: __address__
         replacement: blackbox-exporter:9115
+
+  - job_name: 'speedtest'
+    metrics_path: /probe
+    params:
+      script: [speedtest]
+    static_configs:
+      - targets: ['speedtest-exporter:9469']
+    scrape_interval: 10m
+    scrape_timeout: 90s
+
+  - job_name: 'script_exporter'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['speedtest-exporter:9469']
