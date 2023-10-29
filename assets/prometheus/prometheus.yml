@@ -49,3 +49,20 @@ scrape_configs:
     static_configs:
       - targets:
           - 192.168.2.10:9002
+
+  - job_name: blackbox
+    metrics_path: /probe
+    params:
+      module: [icmp_ipv4]
+    static_configs:
+      - targets:
+        - heise.de
+        - google.de
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      # The blackbox exporter's real hostname:port.
+      - target_label: __address__
+        replacement: blackbox-exporter:9115

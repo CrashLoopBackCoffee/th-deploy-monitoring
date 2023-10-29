@@ -4,6 +4,7 @@
 import pulumi
 import pulumi_docker
 
+from monitoring.blackbox_exporter import create_blackbox_exporter
 from monitoring.cadvisor import create_cadvisor
 from monitoring.grafana import create_grafana
 from monitoring.node_exporter import create_node_exporter
@@ -21,3 +22,4 @@ create_node_exporter(network, opts)
 create_prometheus(network, opts)
 create_grafana(network, opts)
 create_cadvisor(network, opts)
+create_blackbox_exporter(network, opts)
