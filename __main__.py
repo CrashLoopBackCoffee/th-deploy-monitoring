@@ -9,6 +9,7 @@ from monitoring.cadvisor import create_cadvisor
 from monitoring.grafana import create_grafana
 from monitoring.node_exporter import create_node_exporter
 from monitoring.prometheus import create_prometheus
+from monitoring.speedtest import create_speedtest_exporter
 
 provider = pulumi_docker.Provider("synology", host="ssh://synology")
 
@@ -23,3 +24,4 @@ create_prometheus(network, opts)
 create_grafana(network, opts)
 create_cadvisor(network, opts)
 create_blackbox_exporter(network, opts)
+create_speedtest_exporter(network, opts)
