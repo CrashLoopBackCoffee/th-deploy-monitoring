@@ -57,6 +57,10 @@ def create_prometheus(
     docker.Container(
         "prometheus",
         image=image.image_id,
+        command=[
+            "--web.enable-lifecycle",
+            "--config.file=/etc/prometheus/prometheus.yml",
+        ],
         ports=[
             docker.ContainerPortArgs(internal=9090, external=9090),
         ],
