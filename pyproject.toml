@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-pulumi = "3.91.0"
+pulumi = "3.91.1"
 pulumi-docker = "4.4.4"
 pulumi-command = "^0.9.1"
 pyyaml = "^6.0.1"
