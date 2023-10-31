@@ -1,6 +1,8 @@
 """
 Deploys Prometheus to the target host.
 """
+import urllib.request
+
 import pulumi
 import pulumi_command
 import pulumi_docker as docker
@@ -24,6 +26,7 @@ def create_prometheus(
     target_user = config.get("target-user")
 
     prometheus_path = get_assets_path() / "prometheus"
+    prometheus_host = config.get("prometheus-host")
 
     # Create prometheus-config folder
     prometheus_config_dir_resource = pulumi_command.remote.Command(
@@ -54,7 +57,7 @@ def create_prometheus(
         opts=opts,
     )
 
-    docker.Container(
+    container = docker.Container(
         "prometheus",
         image=image.image_id,
         command=[
@@ -84,4 +87,20 @@ def create_prometheus(
         restart="always",
         start=True,
         opts=opts,
+    )
+
+    # Reload prometheus config after pushing config and runnnig the container
+    def reload_prometheus(_):
+        if pulumi.runtime.is_dry_run():
+            return
+
+        print("Reloading prometheus config")
+        req = urllib.request.Request(
+            f"https://{prometheus_host}/-/reload", method="POST"
+        )
+        with urllib.request.urlopen(req):
+            pass
+
+    pulumi.Output.all(prometheus_config_dir_resource.id, container.id).apply(
+        reload_prometheus
     )
