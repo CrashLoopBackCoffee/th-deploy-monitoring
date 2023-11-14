@@ -351,13 +351,13 @@ semver = ">=2.8.1"
 
 [[package]]
 name = "pulumi-docker"
-version = "4.4.4"
+version = "4.4.5"
 description = "A Pulumi package for interacting with Docker in Pulumi programs"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pulumi_docker-4.4.4-py3-none-any.whl", hash = "sha256:fc15a3ee22682232f6d86304ebf7d02174f2490681680704ee0e33ce65525428"},
-    {file = "pulumi_docker-4.4.4.tar.gz", hash = "sha256:0c7d52e973dc367eacf2ec9bfabb4490febb61b04594bb14745c63ab98099e27"},
+    {file = "pulumi_docker-4.4.5-py3-none-any.whl", hash = "sha256:680e570539c9cbce2a36a2f58b23b6b7040db75f8d814ecbc4cbab1c0cf74c50"},
+    {file = "pulumi_docker-4.4.5.tar.gz", hash = "sha256:5e85b4a6637ecec33c3b22c2e84ea7880a64e042bb1028e95944ba5987b5de41"},
 ]
 
 [package.dependencies]
@@ -509,4 +509,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "6b47d94c448502e203942960494d266bd2986ec02fbe9d0d9d4b27ef8f8fc76a"
+content-hash = "16de476167fafdd8aac6916926d6ad06fcdc8c02e3a798a4dfa33ad00597c40a"
