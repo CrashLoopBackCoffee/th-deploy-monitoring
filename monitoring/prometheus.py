@@ -1,6 +1,7 @@
 """
 Deploys Prometheus to the target host.
 """
+
 import urllib.request
 
 import pulumi
