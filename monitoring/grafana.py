@@ -1,6 +1,7 @@
 """
 Deploy Grafana container
 """
+
 import pulumi
 import pulumi_command
 import pulumi_docker as docker
