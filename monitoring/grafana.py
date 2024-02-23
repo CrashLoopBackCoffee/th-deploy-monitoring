@@ -73,9 +73,7 @@ def create_grafana(network: docker.Network, opts: ResourceOptions):
             ),
         ],
         networks_advanced=[
-            docker.ContainerNetworksAdvancedArgs(
-                name=network.name, aliases=["node-exporter"]
-            )
+            docker.ContainerNetworksAdvancedArgs(name=network.name, aliases=["grafana"])
         ],
         restart="always",
         start=True,
