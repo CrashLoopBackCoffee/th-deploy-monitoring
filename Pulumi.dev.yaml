@@ -14,6 +14,3 @@ config:
       api-key:
         secure: AAABALe4Qr4aorGoZh0sbY8/NjirWvF6C7zeq5i9EhjWd60gUwvGR7IM+ONNyE3UxPtU2u0Yh2O0kcLWXiiW0MDQi5bu
       zone: tobiash.net
-
-    prometheus:
-      host: prometheus.henkel.ddnsfree.com

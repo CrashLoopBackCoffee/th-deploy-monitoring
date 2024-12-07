@@ -30,8 +30,8 @@ network = docker.Network('monitoring', opts=opts)
 
 # Create node-exporter container
 create_node_exporter(network, opts)
-create_prometheus(component_config, network, opts)
-create_grafana(component_config, network, opts)
+create_prometheus(component_config, network, cloudflare_provider, opts)
+create_grafana(component_config, network, cloudflare_provider, opts)
 create_cadvisor(network, opts)
 create_blackbox_exporter(component_config, network, opts)
 create_speedtest_exporter(network, opts)

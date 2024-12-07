@@ -22,7 +22,7 @@ def create_cloudflare_cname(
 
     return cloudflare.Record(
         name,
-        proxied=True,
+        proxied=False,
         name=name,
         type='CNAME',
         content=f'home.{zone_name}',
