@@ -1,23 +1,21 @@
-[tool.poetry]
+[project]
 name = "monitoring"
 version = "0.1.0"
 description = ""
-authors = ["Tobias Henkel <tobias.henkel@bmw.de>"]
+authors = [{ name = "Tobias Henkel", email = "tobias.henkel@bmw.de" }]
 readme = "README.md"
+requires-python = ">=3.11"
 
-[tool.poetry.dependencies]
-python = "^3.11"
-pulumi = "3.142.0"
-pulumi-docker = "4.5.7"
-pulumi-command = "^1.0.0"
-pyyaml = "^6.0.1"
+dependencies = [
+    "pulumi-command==1.0.1",
+    "pulumi-docker==4.5.7",
+    "pulumi==3.142.0",
+    "pyyaml>=6.0.1",
+]
 
-[tool.poetry.dev-dependencies]
-black = "^24.10.0"
-isort = "^5.13.2"
-pylint = "^3.3.2"
-flake8 = "^7.0.0"
+[dependency-groups]
+dev = ["black>=24.10.0", "isort>=5.13.2", "pylint>=3.3.2", "flake8>=7.0.0"]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
