@@ -1,4 +1,5 @@
 import pathlib
+import urllib.error
 import urllib.request
 
 import pulumi as p
@@ -89,7 +90,6 @@ def create_alloy(
             f'GRAFANA_CLOUD_API_USER={component_config.alloy.username}',
             f'GRAFANA_CLOUD_API_TOKEN={component_config.alloy.token}',
         ],
-        ports=[{'internal': 9091, 'external': 9091}],
         volumes=[
             {
                 'host_path': f'{target_root_dir}/alloy-config',
@@ -99,8 +99,12 @@ def create_alloy(
                 'host_path': f'{target_root_dir}/alloy-data',
                 'container_path': '/var/lib/alloy/data',
             },
+            {
+                'host_path': '/var/run/docker.sock',
+                'container_path': '/var/run/docker.sock',
+            },
         ],
-        networks_advanced=[{'name': network.name, 'aliases': ['alloy']}],
+        network_mode='host',
         restart='always',
         start=True,
         opts=p.ResourceOptions.merge(
@@ -117,8 +121,11 @@ def create_alloy(
         print(f'Reloading alloy config for {hostname}')
 
         req = urllib.request.Request(f'https://{hostname}/-/reload', method='POST')
-        with urllib.request.urlopen(req):
-            pass
+        try:
+            urllib.request.urlopen(req)
+        except urllib.error.HTTPError as e:
+            print(f'Error reloading alloy config:\n{e.read().decode()}')
+            raise
 
     p.Output.all(dns_record.hostname, alloy_config_dir_resource.id, container.id).apply(
         reload_alloy
