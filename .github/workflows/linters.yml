@@ -24,8 +24,6 @@ jobs:
           python -m pip install --upgrade pip poetry
           uv sync
 
-      - name: Analysing the code with pylint
+      - name: Running checks
         run: |
-          uv run black . --check
-          uv run flake8
-          uv run pylint $(git ls-files '*.py')
+          uv run pre-commit run --all-files --show-diff-on-failure
