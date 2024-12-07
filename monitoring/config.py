@@ -33,6 +33,12 @@ class AlloyConfig(StrictBaseModel):
     token: PulumiSecret | str
 
 
+class CloudflareConfig(StrictBaseModel):
+    api_key: PulumiSecret | str = pydantic.Field(alias='api-key')
+    email: str
+    zone: str
+
+
 class PrometheusConfig(StrictBaseModel):
     host: str
 
@@ -46,6 +52,7 @@ class TargetConfig(StrictBaseModel):
 class ComponentConfig(StrictBaseModel):
     target: TargetConfig
     alloy: AlloyConfig
+    cloudflare: CloudflareConfig
     prometheus: PrometheusConfig
 
 

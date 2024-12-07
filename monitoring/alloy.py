@@ -1,9 +1,12 @@
 import pathlib
+import urllib.request
 
 import pulumi as p
+import pulumi_cloudflare as cloudflare
 import pulumi_command
 import pulumi_docker as docker
 
+from monitoring.cloudflare import create_cloudflare_cname
 from monitoring.config import ComponentConfig
 from monitoring.utils import get_assets_path
 
@@ -22,6 +25,7 @@ def directory_content(path: pathlib.Path) -> list[str]:
 def create_alloy(
     component_config: ComponentConfig,
     network: docker.Network,
+    cloudflare_provider: cloudflare.Provider,
     opts: p.ResourceOptions,
 ):
     """
@@ -32,6 +36,11 @@ def create_alloy(
     target_user = component_config.target.user
 
     alloy_path = get_assets_path() / 'alloy'
+
+    # Create alloy DNS record
+    dns_record = create_cloudflare_cname(
+        'alloy', component_config.cloudflare.zone, cloudflare_provider
+    )
 
     # Create alloy-config folder
     alloy_config_dir_resource = pulumi_command.remote.Command(
@@ -65,7 +74,7 @@ def create_alloy(
         opts=opts,
     )
 
-    docker.Container(
+    container = docker.Container(
         'alloy',
         image=image.image_id,
         command=[
@@ -98,4 +107,19 @@ def create_alloy(
             opts,
             p.ResourceOptions(depends_on=[alloy_config, alloy_data_dir_resource]),
         ),
+    )
+
+    def reload_alloy(args):
+        if p.runtime.is_dry_run():
+            return
+
+        hostname = args[0]
+        print(f'Reloading alloy config for {hostname}')
+
+        req = urllib.request.Request(f'https://{hostname}/-/reload', method='POST')
+        with urllib.request.urlopen(req):
+            pass
+
+    p.Output.all(dns_record.hostname, alloy_config_dir_resource.id, container.id).apply(
+        reload_alloy
     )
