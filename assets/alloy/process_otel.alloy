@@ -1,5 +1,8 @@
+//===========================================================
+// Otel pipeline
+//===========================================================
 otelcol.processor.resourcedetection "default" {
-	detectors = ["env", "system"] // add "gcp", "ec2", "ecs", "elastic_beanstalk", "eks", "lambda", "azure", "aks", "consul", "heroku"  if you want to use cloud resource detection
+	detectors = ["env", "system"]
 
 	system {
 		hostname_sources = ["os"]
@@ -32,7 +35,7 @@ otelcol.processor.transform "drop_unneeded_resource_attributes" {
 	}
 
 	metric_statements {
-		context    = "resource"
+        context    = "resource"
 		statements = [
 			"delete_key(attributes, \"k8s.pod.start_time\")",
 			"delete_key(attributes, \"os.description\")",

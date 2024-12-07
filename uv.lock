@@ -211,6 +211,7 @@ source = { editable = "." }
 dependencies = [
     { name = "pip" },
     { name = "pulumi" },
+    { name = "pulumi-cloudflare" },
     { name = "pulumi-command" },
     { name = "pulumi-docker" },
     { name = "pydantic" },
@@ -234,6 +235,7 @@ dev = [
 requires-dist = [
     { name = "pip", specifier = ">=24.3.1" },
     { name = "pulumi", specifier = "==3.142.0" },
+    { name = "pulumi-cloudflare", specifier = ">=5.44.0" },
     { name = "pulumi-command", specifier = "==1.0.1" },
     { name = "pulumi-docker", specifier = "==4.5.7" },
     { name = "pydantic", specifier = ">=2.10.3" },
@@ -365,6 +367,20 @@ dependencies = [
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/be/d5/bcce0ab79d44b2d8bab6b03d1e7c6fe61f93910109eb08f66646e2d5ed61/pulumi-3.142.0-py3-none-any.whl", hash = "sha256:659a58a26aa36f585046750f01c3f20113c71fa065ee5a4487c775a9ef98b9b2", size = 291446 },
+]
+
+[[package]]
+name = "pulumi-cloudflare"
+version = "5.44.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "parver" },
+    { name = "pulumi" },
+    { name = "semver" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/fb/b9/4a3e3b7826e8e89a4219af5e1644f9fb7665551df1939dddf38d142723c5/pulumi_cloudflare-5.44.0.tar.gz", hash = "sha256:f70d4e63b640df798ef5eb9e9c7d67ea8dfb711300a352022e4bba7fb154e6e5", size = 585109 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f1/23/972372f81ce66e55b9a12d6cb24916a6809336a5d3d03b957767da5bd7b4/pulumi_cloudflare-5.44.0-py3-none-any.whl", hash = "sha256:c195239b4469426d6cfb8202f7844b43424f8d1cf41b25e5db3989a0002e2ca9", size = 842136 },
 ]
 
 [[package]]
