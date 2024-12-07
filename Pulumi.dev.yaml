@@ -1,5 +1,8 @@
 config:
-  monitoring:prometheus-host: prometheus.henkel.ddnsfree.com
-  monitoring:root-dir: /volume2/docker
-  monitoring:target-host: synology
-  monitoring:target-user: tobias
+  monitoring:config:
+    target:
+      host: synology
+      user: tobias
+      root_dir: /volume2/docker
+    prometheus:
+      host: prometheus.henkel.ddnsfree.com

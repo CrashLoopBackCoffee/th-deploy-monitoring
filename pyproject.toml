@@ -11,6 +11,8 @@ dependencies = [
     "pulumi-docker==4.5.7",
     "pulumi==3.142.0",
     "pyyaml>=6.0.1",
+    "pydantic>=2.10.3",
+    "pip>=24.3.1",
 ]
 
 [dependency-groups]
@@ -84,3 +86,6 @@ exclude = [
 reportUnnecessaryTypeIgnoreComment = true
 venv = ".venv"
 venvPath = "."
+
+[tool.pulumi]
+config-root-model = "monitoring.config:PulumiConfigRoot"

@@ -7,17 +7,19 @@ import pulumi_command
 import pulumi_docker as docker
 import yaml
 
+from monitoring.config import ComponentConfig
 from monitoring.utils import get_assets_path, get_image
 
 
-def create_grafana(network: docker.Network, opts: p.ResourceOptions):
+def create_grafana(
+    component_config: ComponentConfig, network: docker.Network, opts: p.ResourceOptions
+):
     """
     Deploy Grafana container
     """
-    config = p.Config()
-    target_root_dir = config.require('root-dir')
-    target_host = config.require('target-host')
-    target_user = config.require('target-user')
+    target_root_dir = component_config.target.root_dir
+    target_host = component_config.target.host
+    target_user = component_config.target.user
 
     grafana_path = get_assets_path() / 'grafana'
 

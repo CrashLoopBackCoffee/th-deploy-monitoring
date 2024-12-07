@@ -7,19 +7,20 @@ import pulumi_command
 import pulumi_docker as docker
 import yaml
 
+from monitoring.config import ComponentConfig
 from monitoring.utils import get_assets_path, get_image
 
 
-def create_blackbox_exporter(network: docker.Network, opts: p.ResourceOptions):
+def create_blackbox_exporter(
+    component_config: ComponentConfig, network: docker.Network, opts: p.ResourceOptions
+):
     """
     Deploys Blackbox Exporter to the target host.
     """
 
-    config = p.Config()
-
-    target_root_dir = config.require('root-dir')
-    target_host = config.require('target-host')
-    target_user = config.require('target-user')
+    target_root_dir = component_config.target.root_dir
+    target_host = component_config.target.host
+    target_user = component_config.target.user
 
     prometheus_path = get_assets_path() / 'blackbox-exporter'
 
