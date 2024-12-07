@@ -4,6 +4,7 @@
         "config:recommended",
         ":dependencyDashboard"
     ],
+    "mode": "full",
     "packageRules": [
         {
             "groupName": "pulumi",
