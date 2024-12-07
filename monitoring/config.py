@@ -39,10 +39,6 @@ class CloudflareConfig(StrictBaseModel):
     zone: str
 
 
-class PrometheusConfig(StrictBaseModel):
-    host: str
-
-
 class TargetConfig(StrictBaseModel):
     host: str
     user: str
@@ -53,7 +49,6 @@ class ComponentConfig(StrictBaseModel):
     target: TargetConfig
     alloy: AlloyConfig
     cloudflare: CloudflareConfig
-    prometheus: PrometheusConfig
 
 
 class StackConfig(StrictBaseModel):

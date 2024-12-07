@@ -3,16 +3,21 @@ Deploy Grafana container
 """
 
 import pulumi as p
+import pulumi_cloudflare as cloudflare
 import pulumi_command
 import pulumi_docker as docker
 import yaml
 
+from monitoring.cloudflare import create_cloudflare_cname
 from monitoring.config import ComponentConfig
 from monitoring.utils import get_assets_path, get_image
 
 
 def create_grafana(
-    component_config: ComponentConfig, network: docker.Network, opts: p.ResourceOptions
+    component_config: ComponentConfig,
+    network: docker.Network,
+    cloudflare_provider: cloudflare.Provider,
+    opts: p.ResourceOptions,
 ):
     """
     Deploy Grafana container
@@ -22,6 +27,9 @@ def create_grafana(
     target_user = component_config.target.user
 
     grafana_path = get_assets_path() / 'grafana'
+
+    # Create alloy DNS record
+    create_cloudflare_cname('grafana', component_config.cloudflare.zone, cloudflare_provider)
 
     # Create grafana-config folder
     grafana_config_dir_resource = pulumi_command.remote.Command(
