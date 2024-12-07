@@ -3,6 +3,7 @@
 import pulumi as p
 import pulumi_docker
 
+from monitoring.alloy import create_alloy
 from monitoring.blackbox_exporter import create_blackbox_exporter
 from monitoring.cadvisor import create_cadvisor
 from monitoring.config import ComponentConfig
@@ -27,3 +28,4 @@ create_grafana(component_config, network, opts)
 create_cadvisor(network, opts)
 create_blackbox_exporter(component_config, network, opts)
 create_speedtest_exporter(network, opts)
+create_alloy(component_config, network, opts)
