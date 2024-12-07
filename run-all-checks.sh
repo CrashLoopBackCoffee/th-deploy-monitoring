@@ -3,6 +3,8 @@
 set -x
 set -eu
 
-black .
-flake8
-pylint $(git ls-files '*.py')
+rc=0
+
+.venv/bin/pre-commit run --all-files || rc=$?
+
+exit $rc

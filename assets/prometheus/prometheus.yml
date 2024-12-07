@@ -1,16 +1,21 @@
 # my global config
 global:
-  scrape_interval:     15s # By default, scrape targets every 15 seconds.
-  evaluation_interval: 15s # By default, scrape targets every 15 seconds.
+  # By default, scrape targets every 15 seconds.
+
+  scrape_interval: 15s
+  # By default, scrape targets every 15 seconds.
+
+  evaluation_interval: 15s
   # scrape_timeout is set to the global default (10s).
 
   # Attach these labels to any time series or alerts when communicating with
   # external systems (federation, remote storage, Alertmanager).
   external_labels:
-      monitor: 'my-project'
+    monitor: "my-project"
 
 # Load and evaluate rules in this file every 'evaluation_interval' seconds.
-rule_files: []
+rule_files:
+  []
   # - 'alert.rules'
 
 # alert
@@ -21,23 +26,22 @@ rule_files: []
 #    - targets:
 #      - "alertmanager:9093"
 
-
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
 
-  - job_name: 'prometheus'
+  - job_name: "prometheus"
     static_configs:
-         - targets: ['localhost:9090']
+      - targets: ["localhost:9090"]
 
-  - job_name: 'cadvisor'
+  - job_name: "cadvisor"
     static_configs:
-      - targets: ['cadvisor:8080']
+      - targets: ["cadvisor:8080"]
 
-  - job_name: 'node-exporter'
+  - job_name: "node-exporter"
     static_configs:
-      - targets: ['node-exporter:9100']
+      - targets: ["node-exporter:9100"]
 
   - job_name: windows_exporter
     static_configs:
@@ -68,16 +72,16 @@ scrape_configs:
       - target_label: __address__
         replacement: blackbox-exporter:9115
 
-  - job_name: 'speedtest'
+  - job_name: "speedtest"
     metrics_path: /probe
     params:
       script: [speedtest]
     static_configs:
-      - targets: ['speedtest-exporter:9469']
+      - targets: ["speedtest-exporter:9469"]
     scrape_interval: 60m
     scrape_timeout: 90s
 
-  - job_name: 'script_exporter'
+  - job_name: "script_exporter"
     metrics_path: /metrics
     static_configs:
-      - targets: ['speedtest-exporter:9469']
+      - targets: ["speedtest-exporter:9469"]
