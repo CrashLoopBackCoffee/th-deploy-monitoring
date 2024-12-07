@@ -64,7 +64,7 @@ def create_prometheus(
         command=[
             "--web.enable-lifecycle",
             "--config.file=/etc/prometheus/prometheus.yml",
-            "--storage.tsdb.retention.time=365d",
+            "--storage.tsdb.retention.time=720d",
         ],
         ports=[
             docker.ContainerPortArgs(internal=9090, external=9090),
