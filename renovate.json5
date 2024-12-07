@@ -16,5 +16,6 @@
             ]
         }
     ],
+    "prHourlyLimit": 10,
     "rangeStrategy": "replace"
 }
