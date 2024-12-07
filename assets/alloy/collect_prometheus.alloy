@@ -1,0 +1,39 @@
+//===========================================================
+// Collect self Metrics
+//===========================================================
+prometheus.exporter.self "default" { }
+prometheus.scrape "default" {
+    targets = prometheus.exporter.self.default.targets
+    forward_to = [otelcol.receiver.prometheus.default.receiver]
+}
+
+
+//===========================================================
+// Collect unix Metrics
+//===========================================================
+prometheus.exporter.unix "default" { /* use defaults */ }
+prometheus.scrape "unix" {
+	targets    = prometheus.exporter.unix.default.targets
+	forward_to = [otelcol.receiver.prometheus.default.receiver]
+}
+
+
+//===========================================================
+// Collect container Metrics
+//===========================================================
+prometheus.exporter.cadvisor "default" {
+}
+
+prometheus.scrape "cadvisor" {
+	targets    = prometheus.exporter.cadvisor.default.targets
+	forward_to = [otelcol.receiver.prometheus.default.receiver]
+}
+
+//===========================================================
+// Convert to Otel
+//===========================================================
+otelcol.receiver.prometheus "default" {
+  output {
+    metrics = [otelcol.processor.resourcedetection.default.input]
+  }
+}
