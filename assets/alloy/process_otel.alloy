@@ -4,10 +4,6 @@
 otelcol.processor.resourcedetection "default" {
 	detectors = ["env", "system"]
 
-	system {
-		hostname_sources = ["os"]
-	}
-
 	output {
 		metrics = [otelcol.processor.transform.drop_unneeded_resource_attributes.input]
 		logs    = [otelcol.processor.transform.drop_unneeded_resource_attributes.input]
