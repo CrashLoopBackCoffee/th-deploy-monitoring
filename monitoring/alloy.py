@@ -103,6 +103,11 @@ def create_alloy(
                 'host_path': '/var/run/docker.sock',
                 'container_path': '/var/run/docker.sock',
             },
+            {
+                'host_path': '/var/log',
+                'container_path': '/mnt/var/log',
+                'read_only': True,
+            },
         ],
         network_mode='host',
         restart='always',
