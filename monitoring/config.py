@@ -33,10 +33,22 @@ class AlloyConfig(StrictBaseModel):
     token: PulumiSecret | str
 
 
+class GrafanaConfig(StrictBaseModel):
+    version: str
+
+
 class CloudflareConfig(StrictBaseModel):
     api_key: PulumiSecret | str = pydantic.Field(alias='api-key')
     email: str
     zone: str
+
+
+class PrometheusConfig(StrictBaseModel):
+    version: str
+
+
+class SpeedtestExporterConfig(StrictBaseModel):
+    version: str
 
 
 class TargetConfig(StrictBaseModel):
@@ -49,6 +61,9 @@ class ComponentConfig(StrictBaseModel):
     target: TargetConfig
     alloy: AlloyConfig
     cloudflare: CloudflareConfig
+    grafana: GrafanaConfig
+    prometheus: PrometheusConfig
+    speedtest_exporter: SpeedtestExporterConfig = pydantic.Field(alias='speedtest-exporter')
 
 
 class StackConfig(StrictBaseModel):
