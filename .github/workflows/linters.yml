@@ -4,6 +4,7 @@ on:
   - push
 
 env:
+  # renovate: datasource=github-releases packageName=grafana/alloy versioning=semver
   ALLOY_VERSION: v1.5.0
 
 jobs:
