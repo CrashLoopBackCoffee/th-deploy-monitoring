@@ -12,7 +12,7 @@ import yaml
 
 from monitoring.cloudflare import create_cloudflare_cname
 from monitoring.config import ComponentConfig
-from monitoring.utils import get_assets_path, get_image
+from monitoring.utils import get_assets_path
 
 
 def create_prometheus(
@@ -57,7 +57,7 @@ def create_prometheus(
 
     image = docker.RemoteImage(
         'prometheus',
-        name=get_image('prometheus'),
+        name=f'quay.io/prometheus/prometheus:v{component_config.prometheus.version}',
         keep_locally=True,
         opts=opts,
     )

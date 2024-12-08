@@ -10,7 +10,7 @@ import yaml
 
 from monitoring.cloudflare import create_cloudflare_cname
 from monitoring.config import ComponentConfig
-from monitoring.utils import get_assets_path, get_image
+from monitoring.utils import get_assets_path
 
 
 def create_grafana(
@@ -58,7 +58,7 @@ def create_grafana(
 
     image = docker.RemoteImage(
         'grafana',
-        name=get_image('grafana'),
+        name=f'grafana/grafana:{component_config.grafana.version}',
         keep_locally=True,
         opts=opts,
     )

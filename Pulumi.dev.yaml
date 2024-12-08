@@ -15,3 +15,12 @@ config:
       api-key:
         secure: AAABALe4Qr4aorGoZh0sbY8/NjirWvF6C7zeq5i9EhjWd60gUwvGR7IM+ONNyE3UxPtU2u0Yh2O0kcLWXiiW0MDQi5bu
       zone: tobiash.net
+    grafana:
+      # renovate: datasource=github-releases packageName=grafana/grafana versioning=semver
+      version: "11.3.2"
+    prometheus:
+      # renovate: datasource=github-releases packageName=prometheus/prometheus versioning=semver
+      version: "v3.0.0"
+    speedtest-exporter:
+      # renovate: datasource=github-releases packageName=billimek/prometheus-speedtest-exporter versioning=semver
+      version: "1.3.0"
