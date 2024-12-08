@@ -1,31 +1,28 @@
 //===========================================================
-// Collect self Metrics
+// Scrape jobs
 //===========================================================
-prometheus.exporter.self "default" { }
 
 prometheus.scrape "default" {
-	targets    = prometheus.exporter.self.default.targets
-	forward_to = [otelcol.receiver.prometheus.default.receiver]
+	targets = array.concat(
+		discovery.relabel.blackbox.output,
+		discovery.relabel.unix.output,
+		discovery.relabel.static.output,
+		prometheus.exporter.self.default.targets,
+		prometheus.exporter.cadvisor.default.targets,
+	)
+	scrape_interval = "15s"
+	forward_to      = [otelcol.receiver.prometheus.default.receiver]
 }
 
-//===========================================================
-// Collect unix Metrics
-//===========================================================
-prometheus.exporter.unix "default" { /* use defaults */ }
-
-prometheus.scrape "unix" {
-	targets    = prometheus.exporter.unix.default.targets
-	forward_to = [otelcol.receiver.prometheus.default.receiver]
-}
-
-//===========================================================
-// Collect container Metrics
-//===========================================================
-prometheus.exporter.cadvisor "default" { }
-
-prometheus.scrape "cadvisor" {
-	targets    = prometheus.exporter.cadvisor.default.targets
-	forward_to = [otelcol.receiver.prometheus.default.receiver]
+prometheus.scrape "speedtest" {
+	targets = [
+		{__address__ = "localhost:9469", job = "speedtest", instance = "speedtest-exporter:9469"},
+	]
+	metrics_path    = "/probe"
+	params          = {"script" = ["speedtest"]}
+	scrape_interval = "60m"
+	scrape_timeout  = "90s"
+	forward_to      = [otelcol.receiver.prometheus.default.receiver]
 }
 
 //===========================================================
