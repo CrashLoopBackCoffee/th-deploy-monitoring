@@ -72,6 +72,38 @@ loki.relabel "docker" {
 }
 
 //===========================================================
+// Synology logs
+//===========================================================
+
+local.file_match "logs" {
+	path_targets = [
+		{__path__ = "/mnt/var/log/*.log"},
+		{__path__ = "/mnt/var/log/**/*.log"},
+	]
+}
+
+loki.source.file "logs" {
+	targets    = local.file_match.logs.targets
+	forward_to = [loki.relabel.logs.receiver]
+}
+
+loki.relabel "logs" {
+	forward_to = [otelcol.receiver.loki.default.receiver]
+
+	rule {
+		source_labels = ["filename"]
+		regex         = "/mnt(.*)"
+		target_label  = "filename"
+	}
+
+	rule {
+		source_labels = ["log_file_path"]
+		regex         = "/mnt(.*)"
+		target_label  = "log_file_path"
+	}
+}
+
+//===========================================================
 // Convert to Otel
 //===========================================================
 otelcol.receiver.loki "default" {
