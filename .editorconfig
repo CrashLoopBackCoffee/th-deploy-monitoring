@@ -19,3 +19,7 @@ indent_size = 2
 [*.{yml,yaml}]
 indent_size = 2
 quote_type = double
+
+[*.alloy]
+indent_style = tab
+tab_width = 4
