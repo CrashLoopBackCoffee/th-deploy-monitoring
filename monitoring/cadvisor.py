@@ -23,7 +23,7 @@ def create_cadvisor(network: docker.Network, opts: p.ResourceOptions):
         'cadvisor',
         image=image.image_id,
         name='cadvisor',
-        command=['--disable_metrics=percpu'],
+        command=['--disable_metrics=percpu', '--housekeeping_interval=10s', '--docker_only=true'],
         ports=[
             docker.ContainerPortArgs(internal=8080, external=8081),
         ],
