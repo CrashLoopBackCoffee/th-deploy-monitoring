@@ -66,6 +66,7 @@ def create_grafana(
     docker.Container(
         'grafana',
         image=image.image_id,
+        name='grafana',
         ports=[
             docker.ContainerPortArgs(internal=3000, external=3000),
         ],

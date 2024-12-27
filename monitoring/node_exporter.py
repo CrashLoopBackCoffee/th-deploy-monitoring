@@ -21,6 +21,7 @@ def create_node_exporter(network: pulumi_docker.Network, opts: p.ResourceOptions
     pulumi_docker.Container(
         'node-exporter',
         image=node_exporter_image.image_id,
+        name='node-exporter',
         ports=[
             pulumi_docker.ContainerPortArgs(internal=9100, external=9100),
         ],

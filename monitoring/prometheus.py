@@ -65,6 +65,7 @@ def create_prometheus(
     container = docker.Container(
         'prometheus',
         image=image.image_id,
+        name='prometheus',
         command=[
             '--web.enable-lifecycle',
             '--config.file=/etc/prometheus/prometheus.yml',
