@@ -54,6 +54,7 @@ def create_blackbox_exporter(
 
     docker.Container(
         'blackbox-exporter',
+        name='blackbox-exporter',
         image=image.image_id,
         ports=[
             docker.ContainerPortArgs(

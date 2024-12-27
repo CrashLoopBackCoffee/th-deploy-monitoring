@@ -23,6 +23,7 @@ def create_speedtest_exporter(
     pulumi_docker.Container(
         'speedtest-exporter',
         image=speedtest_exporter_image.image_id,
+        name='speedtest-exporter',
         ports=[
             pulumi_docker.ContainerPortArgs(internal=9469, external=9469),
         ],

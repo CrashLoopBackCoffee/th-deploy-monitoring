@@ -78,6 +78,7 @@ def create_alloy(
     container = docker.Container(
         'alloy',
         image=image.image_id,
+        name='alloy',
         command=[
             'run',
             '--server.http.listen-addr=0.0.0.0:9091',
