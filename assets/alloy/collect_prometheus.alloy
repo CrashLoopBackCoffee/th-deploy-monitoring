@@ -8,8 +8,8 @@ prometheus.scrape "default" {
 		discovery.relabel.unix.output,
 		discovery.relabel.static.output,
 		prometheus.exporter.self.default.targets,
-		prometheus.exporter.cadvisor.default.targets,
 	)
+
 	scrape_interval = "15s"
 	forward_to      = [otelcol.receiver.prometheus.default.receiver]
 }
