@@ -4,6 +4,8 @@
 
 discovery.relabel "static" {
 	targets = [
+		// cadvisor
+		{__address__ = "localhost:8081", job = "cadvisor"},
 		// Prometheus
 		{__address__ = "localhost:9090", job = "prometheus"},
 		// Script exporter
