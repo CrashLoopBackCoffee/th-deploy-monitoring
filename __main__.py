@@ -9,11 +9,18 @@ from monitoring.blackbox_exporter import create_blackbox_exporter
 from monitoring.cadvisor import create_cadvisor
 from monitoring.config import ComponentConfig
 from monitoring.grafana import create_grafana
+from monitoring.mimir import create_mimir
 from monitoring.node_exporter import create_node_exporter
 from monitoring.prometheus import create_prometheus
 from monitoring.speedtest import create_speedtest_exporter
 
 component_config = ComponentConfig.model_validate(p.Config().get_object('config'))
+
+config = p.Config()
+stack = p.get_stack()
+org = p.get_organization()
+minio_stack_ref = p.StackReference(f'{org}/s3/{stack}')
+
 
 provider = docker.Provider('synology', host='ssh://synology')
 
@@ -36,3 +43,4 @@ create_cadvisor(network, opts)
 create_blackbox_exporter(component_config, network, opts)
 create_speedtest_exporter(component_config, network, opts)
 create_alloy(component_config, network, cloudflare_provider, opts)
+create_mimir(component_config, network, cloudflare_provider, minio_stack_ref, opts)

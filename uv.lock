@@ -214,6 +214,7 @@ dependencies = [
     { name = "pulumi-cloudflare" },
     { name = "pulumi-command" },
     { name = "pulumi-docker" },
+    { name = "pulumi-minio" },
     { name = "pydantic" },
     { name = "pyyaml" },
 ]
@@ -238,6 +239,7 @@ requires-dist = [
     { name = "pulumi-cloudflare", specifier = ">=5.44.0" },
     { name = "pulumi-command", specifier = "==1.0.1" },
     { name = "pulumi-docker", specifier = "==4.5.8" },
+    { name = "pulumi-minio", specifier = ">=0.16.2" },
     { name = "pydantic", specifier = ">=2.10.3" },
     { name = "pyyaml", specifier = ">=6.0.1" },
 ]
@@ -409,6 +411,20 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/e3/58/6e206fd55be29799524e4a42e39bc2acc719c8d04feda58a9babd77e2ae3/pulumi_docker-4.5.8.tar.gz", hash = "sha256:f4e5ad528f9d2bed52c88e3ba62e051ef0da55c26b41c41f651da975b0adaf86", size = 90392 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/39/a4/3d295d2483ad7d05da8e8235e824c8ce75edb3bdaf5c707160ca95b9556e/pulumi_docker-4.5.8-py3-none-any.whl", hash = "sha256:bedc09f79b72514dbce7c721467880887b3f9d334ae8ea4a2399c6970c77e684", size = 110157 },
+]
+
+[[package]]
+name = "pulumi-minio"
+version = "0.16.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "parver" },
+    { name = "pulumi" },
+    { name = "semver" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ce/30/9ac85a089bb2aac21eff9a0881dc9a19574ec2708048b52528e949575f88/pulumi_minio-0.16.2.tar.gz", hash = "sha256:140a13cf421a023b8160118dab27915f8a48f53d76739668dbb0e021c6937669", size = 24670 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/29/41/1c77d4da0bf138342e765255596a5942e257eeb893d1d9f52308be38f529/pulumi_minio-0.16.2-py3-none-any.whl", hash = "sha256:0084464c4f260c00a304f4997bef6b264f88fc04fd5b3ab22bb285e5d7ff3ff6", size = 49458 },
 ]
 
 [[package]]

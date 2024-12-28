@@ -43,6 +43,10 @@ class CloudflareConfig(StrictBaseModel):
     zone: str
 
 
+class MimirConfig(StrictBaseModel):
+    version: str
+
+
 class PrometheusConfig(StrictBaseModel):
     version: str
 
@@ -62,6 +66,7 @@ class ComponentConfig(StrictBaseModel):
     alloy: AlloyConfig
     cloudflare: CloudflareConfig
     grafana: GrafanaConfig
+    mimir: MimirConfig
     prometheus: PrometheusConfig
     speedtest_exporter: SpeedtestExporterConfig = pydantic.Field(alias='speedtest-exporter')
 
