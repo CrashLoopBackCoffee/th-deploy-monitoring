@@ -3,7 +3,7 @@
 //===========================================================
 
 prometheus.exporter.blackbox "default" {
-	config = "{ modules: {icmp_ipv4: {prober: icmp, icmp: {preferred_ip_protocol: ip4 } } } }"
+	config = "{ modules: {icmp_ipv4: {prober: icmp, icmp: {preferred_ip_protocol: ip4 } }, http_2xx: { prober: http, timeout: 5s } } }"
 
 	target {
 		name    = "router"
@@ -21,6 +21,18 @@ prometheus.exporter.blackbox "default" {
 		name    = "google.de"
 		address = "google.de"
 		module  = "icmp_ipv4"
+	}
+
+	target {
+		name    = "shelly-bridge"
+		address = "http://shelly-bridge.local"
+		module  = "http_2xx"
+	}
+
+	target {
+		name    = "shelly-waschmaschine"
+		address = "http://shelly-bridge.local:11516"
+		module  = "http_2xx"
 	}
 }
 
