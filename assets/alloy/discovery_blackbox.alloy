@@ -24,15 +24,21 @@ prometheus.exporter.blackbox "default" {
 	}
 
 	target {
-		name    = "shelly-bridge"
-		address = "http://shelly-bridge.local"
+		name    = "shelly-bridge-apartment"
+		address = "http://shelly-bridge-apartment.local/rpc/Switch.GetStatus?id=0"
 		module  = "http_2xx"
+		labels  = {
+			"sensor" = "shelly-bridge-apartment",
+		}
 	}
 
 	target {
-		name    = "shelly-waschmaschine"
-		address = "http://shelly-bridge.local:11516"
+		name    = "shelly-bridge-basement"
+		address = "http://shelly-bridge-apartment.local:11516/rpc/Switch.GetStatus?id=0"
 		module  = "http_2xx"
+		labels  = {
+			"sensor" = "shelly-bridge-basement",
+		}
 	}
 }
 
