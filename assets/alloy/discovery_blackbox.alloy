@@ -22,24 +22,6 @@ prometheus.exporter.blackbox "default" {
 		address = "google.de"
 		module  = "icmp_ipv4"
 	}
-
-	target {
-		name    = "shelly-bridge-apartment"
-		address = "http://shelly-bridge-apartment.local/rpc/Switch.GetStatus?id=0"
-		module  = "http_2xx"
-		labels  = {
-			"sensor" = "shelly-bridge-apartment",
-		}
-	}
-
-	target {
-		name    = "shelly-bridge-basement"
-		address = "http://shelly-bridge-apartment.local:11516/rpc/Switch.GetStatus?id=0"
-		module  = "http_2xx"
-		labels  = {
-			"sensor" = "shelly-bridge-basement",
-		}
-	}
 }
 
 discovery.relabel "blackbox" {
