@@ -15,15 +15,15 @@ discovery.relabel "static" {
 		// Ohmgraphite
 		{__address__ = "192.168.2.10:9002", job = "ohmgraphite"},
 		// mqtt2prometheus
-		{__address__ = "192.168.40.75:9641", job = "mqtt2prometheus-shellies"},
-		{__address__ = "192.168.40.71:9641", job = "mqtt2prometheus-zwave-last-active"},
-		{__address__ = "192.168.40.72:9641", job = "mqtt2prometheus-zwave-power"},
-		{__address__ = "192.168.40.73:9641", job = "mqtt2prometheus-zwave-energy"},
-		{__address__ = "192.168.40.74:9641", job = "mqtt2prometheus-zwave-voltage"},
+		{__address__ = "192.168.40.71:9641", job = "mqtt2prometheus-shellies"},
+		{__address__ = "192.168.40.75:9641", job = "mqtt2prometheus-zwave-last-active"},
+		{__address__ = "192.168.40.79:9641", job = "mqtt2prometheus-zwave-power"},
+		{__address__ = "192.168.40.74:9641", job = "mqtt2prometheus-zwave-energy"},
+		{__address__ = "192.168.40.72:9641", job = "mqtt2prometheus-zwave-voltage"},
 		{__address__ = "192.168.40.76:9641", job = "mqtt2prometheus-zwave-power-factor"},
-		{__address__ = "192.168.40.77:9641", job = "mqtt2prometheus-zwave-current"},
+		{__address__ = "192.168.40.73:9641", job = "mqtt2prometheus-zwave-current"},
 		{__address__ = "192.168.40.78:9641", job = "mqtt2prometheus-zigbee-nous-plug"},
-		{__address__ = "192.168.40.79:9641", job = "mqtt2prometheus-zigbee-aqara-temp"},
+		{__address__ = "192.168.40.77:9641", job = "mqtt2prometheus-zigbee-aqara-temp"},
 		// Node exporter
 		{__address__ = "pve.tobiash.net:9100", job = "integrations/unix", instance = "pve.tobiash.net"},
 		{__address__ = "pve-test.tobiash.net:9100", job = "integrations/unix", instance = "pve-test.tobiash.net"},
