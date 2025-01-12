@@ -15,6 +15,7 @@ dependencies = [
     "pip>=24.3.1",
     "pulumi-cloudflare>=5.44.0",
     "pulumi-minio>=0.16.2",
+    "pulumi-kubernetes>=4.19.0",
 ]
 
 [dependency-groups]
@@ -88,6 +89,7 @@ exclude = [
 reportUnnecessaryTypeIgnoreComment = true
 venv = ".venv"
 venvPath = "."
+extraPaths = ["../deploy-base/src"]
 
 [tool.pulumi]
 config-root-model = "monitoring.config:PulumiConfigRoot"

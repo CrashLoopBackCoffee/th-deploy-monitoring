@@ -14,6 +14,7 @@ def create_speedtest_exporter(
     """
     Deploys the speedtest-exporter
     """
+    assert component_config.speedtest_exporter
     speedtest_exporter_image = pulumi_docker.RemoteImage(
         'speedtest-exporter',
         name=f'ghcr.io/billimek/prometheus-speedtest-exporter:{component_config.speedtest_exporter.version}',
