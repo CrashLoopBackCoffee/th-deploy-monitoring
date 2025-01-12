@@ -9,7 +9,6 @@ from monitoring.cadvisor_legacy import create_cadvisor
 from monitoring.config import ComponentConfig
 from monitoring.grafana_legacy import create_grafana
 from monitoring.mimir_legacy import create_mimir
-from monitoring.node_exporter_legacy import create_node_exporter
 from monitoring.speedtest_legacy import create_speedtest_exporter
 
 
@@ -34,7 +33,6 @@ def main_legacy():
     network = docker.Network('monitoring', opts=opts)
 
     # Create node-exporter container
-    create_node_exporter(network, opts)
     create_grafana(component_config, network, cloudflare_provider, opts)
     create_cadvisor(network, opts)
     create_speedtest_exporter(component_config, network, opts)
