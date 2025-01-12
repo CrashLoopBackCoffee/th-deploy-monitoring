@@ -33,6 +33,8 @@ class AlloyConfig(deploy_base.model.LocalBaseModel):
 class GrafanaConfig(deploy_base.model.LocalBaseModel):
     version: str
 
+    hostname: str | None = None
+
 
 class CloudflareConfig(deploy_base.model.LocalBaseModel):
     api_key: PulumiSecret | str = pydantic.Field(alias='api-key')

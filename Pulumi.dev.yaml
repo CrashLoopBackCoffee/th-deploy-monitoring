@@ -3,7 +3,7 @@ config:
     target:
       host: synology
       user: tobias
-      root_dir: /volume2/docker
+      root-dir: /volume2/docker
     alloy:
       # renovate: datasource=github-releases packageName=grafana/alloy versioning=semver
       version: v1.5.1
