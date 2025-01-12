@@ -1,5 +1,6 @@
 import pathlib
 
+import deploy_base.model
 import pydantic
 
 REPO_PREFIX = 'deploy-'
@@ -16,65 +17,61 @@ def get_pulumi_project():
     return repo_dir.name[len(REPO_PREFIX) :]
 
 
-class StrictBaseModel(pydantic.BaseModel):
-    model_config = {'extra': 'forbid'}
-
-
-class PulumiSecret(StrictBaseModel):
+class PulumiSecret(deploy_base.model.LocalBaseModel):
     secure: pydantic.SecretStr
 
     def __str__(self):
         return str(self.secure)
 
 
-class AlloyConfig(StrictBaseModel):
+class AlloyConfig(deploy_base.model.LocalBaseModel):
     version: str
     username: str
     token: PulumiSecret | str
 
 
-class GrafanaConfig(StrictBaseModel):
+class GrafanaConfig(deploy_base.model.LocalBaseModel):
     version: str
 
 
-class CloudflareConfig(StrictBaseModel):
+class CloudflareConfig(deploy_base.model.LocalBaseModel):
     api_key: PulumiSecret | str = pydantic.Field(alias='api-key')
     email: str
     zone: str
 
 
-class MimirConfig(StrictBaseModel):
+class MimirConfig(deploy_base.model.LocalBaseModel):
     version: str
 
 
-class PrometheusConfig(StrictBaseModel):
+class PrometheusConfig(deploy_base.model.LocalBaseModel):
     version: str
 
 
-class SpeedtestExporterConfig(StrictBaseModel):
+class SpeedtestExporterConfig(deploy_base.model.LocalBaseModel):
     version: str
 
 
-class TargetConfig(StrictBaseModel):
+class TargetConfig(deploy_base.model.LocalBaseModel):
     host: str
     user: str
     root_dir: str
 
 
-class ComponentConfig(StrictBaseModel):
-    target: TargetConfig
-    alloy: AlloyConfig
-    cloudflare: CloudflareConfig
-    grafana: GrafanaConfig
-    mimir: MimirConfig
-    prometheus: PrometheusConfig
-    speedtest_exporter: SpeedtestExporterConfig = pydantic.Field(alias='speedtest-exporter')
+class ComponentConfig(deploy_base.model.LocalBaseModel):
+    target: TargetConfig | None = None
+    alloy: AlloyConfig | None = None
+    cloudflare: CloudflareConfig | None = None
+    grafana: GrafanaConfig | None = None
+    mimir: MimirConfig | None = None
+    prometheus: PrometheusConfig | None = None
+    speedtest_exporter: SpeedtestExporterConfig | None = None
 
 
-class StackConfig(StrictBaseModel):
+class StackConfig(deploy_base.model.LocalBaseModel):
     model_config = {'alias_generator': lambda field_name: f'{get_pulumi_project()}:{field_name}'}
     config: ComponentConfig
 
 
-class PulumiConfigRoot(StrictBaseModel):
+class PulumiConfigRoot(deploy_base.model.LocalBaseModel):
     config: StackConfig

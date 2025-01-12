@@ -32,6 +32,9 @@ def create_alloy(
     """
     Deploys Alloy to the target host.
     """
+    assert component_config.target
+    assert component_config.cloudflare
+    assert component_config.alloy
     target_root_dir = component_config.target.root_dir
     target_host = component_config.target.host
     target_user = component_config.target.user

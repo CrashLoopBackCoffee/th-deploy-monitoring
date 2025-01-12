@@ -23,6 +23,7 @@ def main_legacy():
 
     opts = p.ResourceOptions(provider=provider)
 
+    assert component_config.cloudflare
     cloudflare_provider = cloudflare.Provider(
         'cloudflare',
         api_key=str(component_config.cloudflare.api_key),

@@ -22,6 +22,9 @@ def create_grafana(
     """
     Deploy Grafana container
     """
+    assert component_config.target
+    assert component_config.cloudflare
+    assert component_config.grafana
     target_root_dir = component_config.target.root_dir
     target_host = component_config.target.host
     target_user = component_config.target.user
