@@ -169,6 +169,18 @@ def create_grafana(component_config: ComponentConfig, k8s_provider: k8s.Provider
                             ],
                         },
                     ],
+                    'readiness_probe': {
+                        'failure_threshold': 3,
+                        'http_get': {
+                            'path': '/robots.txt',
+                            'port': GRAFANA_PORT,
+                            'scheme': 'HTTPS',
+                        },
+                    },
+                    'security_context': {
+                        'fsGroup': 472,
+                        'supplemental_groups': [0],
+                    },
                     'volumes': [
                         {
                             'name': 'grafana-config',
