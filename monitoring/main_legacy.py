@@ -5,13 +5,10 @@ import pulumi_cloudflare as cloudflare
 import pulumi_docker as docker
 
 from monitoring.alloy_legacy import create_alloy
-from monitoring.blackbox_exporter_legacy import create_blackbox_exporter
 from monitoring.cadvisor_legacy import create_cadvisor
 from monitoring.config import ComponentConfig
 from monitoring.grafana_legacy import create_grafana
 from monitoring.mimir_legacy import create_mimir
-from monitoring.node_exporter_legacy import create_node_exporter
-from monitoring.prometheus_legacy import create_prometheus
 from monitoring.speedtest_legacy import create_speedtest_exporter
 
 
@@ -36,11 +33,8 @@ def main_legacy():
     network = docker.Network('monitoring', opts=opts)
 
     # Create node-exporter container
-    create_node_exporter(network, opts)
-    create_prometheus(component_config, network, cloudflare_provider, opts)
     create_grafana(component_config, network, cloudflare_provider, opts)
     create_cadvisor(network, opts)
-    create_blackbox_exporter(component_config, network, opts)
     create_speedtest_exporter(component_config, network, opts)
     create_alloy(component_config, network, cloudflare_provider, opts)
     create_mimir(component_config, network, cloudflare_provider, minio_stack_ref, opts)
