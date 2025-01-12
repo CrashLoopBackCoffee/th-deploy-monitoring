@@ -5,7 +5,6 @@ import pulumi_cloudflare as cloudflare
 import pulumi_docker as docker
 
 from monitoring.alloy_legacy import create_alloy
-from monitoring.blackbox_exporter_legacy import create_blackbox_exporter
 from monitoring.cadvisor_legacy import create_cadvisor
 from monitoring.config import ComponentConfig
 from monitoring.grafana_legacy import create_grafana
@@ -38,7 +37,6 @@ def main_legacy():
     create_node_exporter(network, opts)
     create_grafana(component_config, network, cloudflare_provider, opts)
     create_cadvisor(network, opts)
-    create_blackbox_exporter(component_config, network, opts)
     create_speedtest_exporter(component_config, network, opts)
     create_alloy(component_config, network, cloudflare_provider, opts)
     create_mimir(component_config, network, cloudflare_provider, minio_stack_ref, opts)
