@@ -16,7 +16,7 @@ prometheus.scrape "default" {
 
 prometheus.scrape "speedtest" {
 	targets = [
-		{__address__ = "localhost:9469", job = "speedtest", instance = "speedtest-exporter:9469"},
+		{__address__ = "192.168.40.80:9469", job = "speedtest", instance = "speedtest-exporter:9469"},
 	]
 	metrics_path    = "/probe"
 	params          = {"script" = ["speedtest"]}

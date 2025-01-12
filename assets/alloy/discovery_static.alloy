@@ -9,7 +9,7 @@ discovery.relabel "static" {
 		// Prometheus
 		{__address__ = "localhost:9090", job = "prometheus"},
 		// Script exporter
-		{__address__ = "localhost:9469", job = "script_exporter", instance = "speedtest-exporter:9469"},
+		{__address__ = "192.168.40.80:9469", job = "script_exporter", instance = "speedtest-exporter:9469"},
 		// Windows exporter
 		{__address__ = "192.168.2.10:9182", job = "windows_exporter"},
 		// Ohmgraphite

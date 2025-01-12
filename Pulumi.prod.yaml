@@ -1,2 +1,5 @@
 config:
-  monitoring:config: {}
+  monitoring:config:
+    speedtest-exporter:
+      # renovate: datasource=github-releases packageName=billimek/prometheus-speedtest-exporter versioning=semver
+      version: 1.3.1

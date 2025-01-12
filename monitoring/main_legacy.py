@@ -9,7 +9,6 @@ from monitoring.cadvisor_legacy import create_cadvisor
 from monitoring.config import ComponentConfig
 from monitoring.grafana_legacy import create_grafana
 from monitoring.mimir_legacy import create_mimir
-from monitoring.speedtest_legacy import create_speedtest_exporter
 
 
 def main_legacy():
@@ -36,6 +35,5 @@ def main_legacy():
     # Create node-exporter container
     create_grafana(component_config, network, cloudflare_provider, opts)
     create_cadvisor(network, opts)
-    create_speedtest_exporter(component_config, network, opts)
     create_alloy(component_config, network, cloudflare_provider, opts)
     create_mimir(component_config, network, cloudflare_provider, minio_stack_ref, opts)
