@@ -2,6 +2,7 @@ import pulumi as p
 import pulumi_kubernetes as k8s
 
 from monitoring.config import ComponentConfig
+from monitoring.speedtest import create_speedtest_exporter
 
 
 def main():
@@ -16,3 +17,5 @@ def main():
 
     assert component_config
     assert k8s_provider
+
+    create_speedtest_exporter(component_config, k8s_provider)
