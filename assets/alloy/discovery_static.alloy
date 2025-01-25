@@ -25,7 +25,8 @@ discovery.relabel "static" {
 		{__address__ = "zigbee-nous-plug.mqtt2prometheus.local:9641", job = "mqtt2prometheus-zigbee-nous-plug"},
 		{__address__ = "zigbee-aqara-temp.mqtt2prometheus.local:9641", job = "mqtt2prometheus-zigbee-aqara-temp"},
 		// Node exporter
-		{__address__ = "pve.tobiash.net:9100", job = "integrations/unix", instance = "pve.tobiash.net"},
+		{__address__ = "opnsense.tobiash.net:9100", job = "integrations/unix", instance = "opnsense.tobiash.net"},
 		{__address__ = "pve-test.tobiash.net:9100", job = "integrations/unix", instance = "pve-test.tobiash.net"},
+		{__address__ = "pve.tobiash.net:9100", job = "integrations/unix", instance = "pve.tobiash.net"},
 	]
 }
