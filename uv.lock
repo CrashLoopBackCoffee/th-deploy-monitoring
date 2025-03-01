@@ -1,4 +1,5 @@
 version = 1
+revision = 1
 requires-python = ">=3.11"
 resolution-markers = [
     "python_full_version < '3.12'",
@@ -302,9 +303,9 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "pip", specifier = ">=24.3.1" },
-    { name = "pulumi", specifier = "==3.147.0" },
+    { name = "pulumi", specifier = "==3.153.1" },
     { name = "pulumi-cloudflare", specifier = ">=5.44.0" },
-    { name = "pulumi-command", specifier = "==1.0.1" },
+    { name = "pulumi-command", specifier = "==1.0.2" },
     { name = "pulumi-docker", specifier = "==4.6.1" },
     { name = "pulumi-kubernetes", specifier = ">=4.19.0" },
     { name = "pulumi-minio", specifier = ">=0.16.2" },
@@ -424,7 +425,7 @@ wheels = [
 
 [[package]]
 name = "pulumi"
-version = "3.147.0"
+version = "3.153.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "debugpy" },
@@ -437,7 +438,7 @@ dependencies = [
     { name = "six" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d1/93/561984fb8236270749215bc19b1828e5b2da211af934c8a469dfe21adafa/pulumi-3.147.0-py3-none-any.whl", hash = "sha256:eee7a08af42f9cb680c177d6cfa17fabc1c49581d908355e275a493840825870", size = 297549 },
+    { url = "https://files.pythonhosted.org/packages/58/5b/838e3af51a7686c854a99d933c02ae7e7163eeb945008f630affe97a5b00/pulumi-3.153.1-py3-none-any.whl", hash = "sha256:6a61581e519cd3323aecd46f24d02c5f6f7cb8bb721efa28c2137234efa8cb7c", size = 324306 },
 ]
 
 [[package]]
@@ -456,16 +457,16 @@ wheels = [
 
 [[package]]
 name = "pulumi-command"
-version = "1.0.1"
+version = "1.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "parver" },
     { name = "pulumi" },
     { name = "semver" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/dd/c0/a6304d7697a22cec1f71101613eb81fe5f98549c36040d40a5d0a9cc759e/pulumi_command-1.0.1.tar.gz", hash = "sha256:58e123707956aa7a9be2ce89c009642539cde5d9fa02e1e10501662600894843", size = 31532 }
+sdist = { url = "https://files.pythonhosted.org/packages/11/d7/5398856a296ea22ab237a4e9919938dd8d9e25a869cd66d041b8d83d6f3b/pulumi_command-1.0.2.tar.gz", hash = "sha256:17b4010149a62ebce85a35f412fca6f7f508a24e54ee43d73c900e27869cae3e", size = 32228 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ad/f1/a7616bc13081a110d8c2d0fe26c42249735154fa2732c86fab9ef8de0844/pulumi_command-1.0.1-py3-none-any.whl", hash = "sha256:672cdea9c0ced0f79ed47e578267a2b2160dcf88626dde34ee96f5524a003574", size = 34742 },
+    { url = "https://files.pythonhosted.org/packages/85/a8/0dc5395976d8197fdc62aa5a1658f82e3c121354f952097123452d312d56/pulumi_command-1.0.2-py3-none-any.whl", hash = "sha256:c75424fe6a80b495bec33c19c8ae97240f38003eb35f865a78ff59425bf9531c", size = 35770 },
 ]
 
 [[package]]
